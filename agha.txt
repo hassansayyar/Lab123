@@ -1,0 +1,38 @@
+.386 ; Because it is 32 bit processor assembly
+
+.model flat
+
+
+.stack 1024 ;   stack segment defintion 
+            ;   We have asked for the allocation of 1024 bytes for our stack when program is run 
+
+.data ;         Data segment
+
+
+
+.code ;         Code segment definition
+
+
+main proc ; Proc-> { 
+
+mov esi, 5
+mov al, 255 ; CF=1 bit 0 in EFL register must be set
+inc al      ; ZF=1, bit 6  must be set too
+mov edi, 6
+
+                     ; 255= 1 1 1 1 1 1 1 1
+					 ; 1=   0 0 0 0 0 0 0 0
+					 ; SF=0 Bit 7  must be clea
+					 ; OV=
+
+mov al, -128    ;  OV=1, CF=1, SF=0, ZF=
+
+add al, -1
+
+                           ; -128= 1 0 0 0 0 0 0 0
+						   ;-1=    1 1 1 1 1 1 1 11
+
+main endp ; endp-> }
+ 
+
+end main ; must be last statement of any assembly program
